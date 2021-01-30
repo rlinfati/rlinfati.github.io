@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Dr. Rodrigo Linfati</title>
+    <link>https://rlinfati.github.io/</link>
+    <description>Recent content on Dr. Rodrigo Linfati</description>
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://rlinfati.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Education</title>
+      <link>https://rlinfati.github.io/education/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rlinfati.github.io/education/</guid>
+      <description>Alma Mater Studiorum - Università di Bologna PhD in Automatic Control System and Operational Research (2009-2011) Universidad de Concepción Master of Science in Industrial Engineering (2006-2008) Industrial Engineer (2002-2007) Bachelor of Engineering Science (2002-2005) </description>
+    </item>
+    
+    <item>
+      <title>Journal Papers &amp; Research Projects</title>
+      <link>https://rlinfati.github.io/research/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rlinfati.github.io/research/</guid>
+      <description>Journal Papers Google Scholar - ResearchID - Scopus - OrcdID  Research Projects FONDEF: IT16M100019, Co-researcher  2017-2018 CONICYT-FONDEF-Mineria, Chile &amp;ldquo;Desarrollo de modelos de optimización para la planificación minera de mediano y corto plazo&amp;rdquo;  FONDECYT: 11150370, Principal Investigator  2016-2018 CONICYT-FONDECYT, Iniciación, Chile &amp;ldquo;Heuristics for Electric Multi¬Depot Vehicle Routing Problems and 3D Loading Constraint Problems&amp;rdquo;  ECOS-CONICYT: C13E04, Co-researcher  2014-2016 ECOS, CONICYT, France, Chile &amp;ldquo;Energy-Efficient and Robust Approaches for the Scheduling of Production, Services, and Urban Transport&amp;rdquo;  STIC-AmSud-CONICYT: 13STIC-05, Co-researcher.</description>
+    </item>
+    
+    <item>
+      <title>Work Experience</title>
+      <link>https://rlinfati.github.io/work/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://rlinfati.github.io/work/</guid>
+      <description>Universidad del Bío-Bío Assistant Professor, Department of Industrial Engineering (2012-today)  Professor &amp;ldquo;Asistente&amp;rdquo; - Industrial Engineering Professor &amp;ldquo;Nucleo&amp;rdquo; - Master of Science in Industrial Engineering Professor &amp;ldquo;Colaborador&amp;rdquo; - Magíster en Ingeniería de Materiales y Procesos Sustentables Professor &amp;ldquo;Claustro&amp;rdquo; - Doctorado en Ingeniería de Materiales y Procesos Sustentables Professor &amp;ldquo;Claustro&amp;rdquo; - Doctorado en Ingeniería  Universidad de Concepción  Adjunct Professor &amp;ldquo;Colaborador&amp;rdquo; - Master of Science in Industrial Engineering Adjunct Professor &amp;ldquo;Claustro&amp;rdquo; - Doctor of Philosophy in Industrial Engineering  </description>
+    </item>
+    
+  </channel>
+</rss>
