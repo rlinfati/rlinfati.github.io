@@ -19,7 +19,7 @@ title: Work Experience
 
 ## Universidad de Concepción
 * Adjunct Professor "Colaborador" - [Master of Science in Industrial Engineering][magindus]
-* Adjunct Professor "Claustro" - [Doctor of Philosophy in Industrial Engineering][docindus]
+* Adjunct Professor "Colaborador" - [Doctor of Philosophy in Industrial Engineering][docindus]
 
 [magindus]: http://magindus.udec.cl/index.php/nuestros-profesores
 [docindus]: http://www.docindus.udec.cl/index.php/nuestros-profesores
