@@ -29,7 +29,7 @@ publishDir = "docs"
     weight = 4
 
 [[menu.icon]]
-    url = "mailto:rodrigo@linfati.cl"
+    url = "mailto:spam@linfati.cl"
     name = "fas fa-envelope"
     weight = 1
 
