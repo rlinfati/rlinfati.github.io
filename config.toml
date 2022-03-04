@@ -1,0 +1,48 @@
+baseURL = "https://rlinfati.github.io/"
+title = "Dr. Rodrigo Linfati"
+theme = "minimal"
+googleAnalytics = "UA-9419619-1"
+
+[params]
+    copyright = "Powered by [Hugo](https://gohugo.io) and [Minimal](https://github.com/calintat/minimal)."
+    showBorder = true
+
+[[menu.main]]
+    url = "/"
+    name = "Home"
+    weight = 1
+
+[[menu.main]]
+    url = "/education/"
+    name = "Education"
+    weight = 2
+
+[[menu.main]]
+    url = "/work/"
+    name = "Work"
+    weight = 3
+
+[[menu.main]]
+    url = "/research/"
+    name = "Research"
+    weight = 4
+
+[[menu.icon]]
+    url = "mailto:info@linfati.cl"
+    name = "fas fa-envelope"
+    weight = 1
+
+[[menu.icon]]
+    url = "https://github.com/rlinfati/"
+    name = "fas fa-code"
+    weight = 2
+
+[[menu.icon]]
+    url = "https://github.com/rlinfati/CVitae/raw/master/vitae.pdf"
+    name = "fab fa-linkedin"
+    weight = 3
+
+[[menu.icon]]
+    url = "https://keys.openpgp.org/vks/v1/by-fingerprint/89A5DD1BAA92F88B5D20A2097CB1E8481902F941"
+    name = "fas fa-id-badge"
+    weight = 4
