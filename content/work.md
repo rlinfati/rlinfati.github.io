@@ -7,14 +7,12 @@ title: Work Experience
 * Professor _Asociado_ - [Department of Industrial Engineering][ici]
 * Professor _Nucleo_ - [Master of Science in Industrial Engineering][mii]
 * Professor _Claustro_ - [Doctor of Philosophy in Engineering][dei]
-<!--
-* Professor "Claustro" - [Doctorado en Ingeniería de Materiales y Procesos Sustentables][dps]
-[dps]: http://postgrados.ubiobio.cl/Doctorados/41/Ingenieria_de_Materiales_y_Procesos_Sustentables/
--->
+* Professor _Claustro_ - [Doctorado en Ingeniería de Materiales y Procesos Sustentables][dps]
 
 [ici]: http://industrial.ubiobio.cl/
 [mii]: http://postgrados.ubiobio.cl/Magisteres/29/Ingenieria_Industrial/
 [dei]: http://postgrados.ubiobio.cl/Doctorados/45/Ingenieria/
+[dps]: http://postgrados.ubiobio.cl/Doctorados/41/Ingenieria_de_Materiales_y_Procesos_Sustentables/
 
 ### Universidad de Concepción
 * Professor _Visitante_ - [Master of Science in Industrial Engineering][magindus]

@@ -3,16 +3,20 @@ title: Journal Papers & Research Projects
 ---
 
 ## Journal Papers
-### [Google Scholar][Google Scholar] - [ResearchID][ResearchID] - [Scopus][Scopus] - [OrcdID][OrcdID]
+### [Google Scholar][Google Scholar] - [Web of Science][Web of Science] - [Scopus][Scopus] - [OrcdID][OrcdID]
 
 [Google Scholar]: https://scholar.google.cl/citations?user=6bJ02OAAAAAJ
-[ResearchID]: http://www.researcherid.com/rid/X-9326-2018
+[Web of Science]: https://www.webofscience.com/wos/author/rid/X-9326-2018
 [Scopus]: https://www.scopus.com/authid/detail.uri?authorId=55250033800
 [OrcdID]: https://orcid.org/0000-0002-7659-383X
 
 ---
 
-## Research Projects
+## Research Projects (CONICYT/ANID)
+
+#### FONDECYT: 1230125, Principal Investigator
+* 2023-2026 CONICYT-FONDECYT, Regular, Chile
+* "Trajectory-based metaheuristic algorithms for new variants of the VRP"
 
 #### FONDEF: IT16M100019, Co-researcher
 * 2017-2018 CONICYT-FONDEF-Mineria, Chile
