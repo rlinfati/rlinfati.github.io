@@ -43,6 +43,6 @@ googleAnalytics = "UA-9419619-1"
     weight = 3
 
 [[menu.icon]]
-    url = "https://keys.openpgp.org/vks/v1/by-fingerprint/89A5DD1BAA92F88B5D20A2097CB1E8481902F941"
+    url = "https://rlinfati.ubb.cl/"
     name = "fas fa-id-badge"
     weight = 4
