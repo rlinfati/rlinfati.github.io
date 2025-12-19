@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CAM call2cal</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <script>
+        function parm2cam(ip, p, v){
+            var scriptTag = document.createElement('script');
+            scriptTag.type = 'text/javascript';
+            scriptTag.src = "https://" + ip + "/camera_control.cgi?loginuse=admin&loginpas=PASSWORD&param=" + p + "&value=" + v
+            document.head.appendChild(scriptTag);
+        }
+        function move2cam(ip, c){
+            var scriptTag = document.createElement('script');
+            scriptTag.type = 'text/javascript';
+            scriptTag.src = "https://" + ip + "/decoder_control.cgi?loginuse=admin&loginpas=PASSWORD&command=" + c + "&onestep=1"
+            document.head.appendChild(scriptTag);
+        }
+        function reboot2cam(ip){
+            var scriptTag = document.createElement('script');
+            scriptTag.type = 'text/javascript';
+            scriptTag.src = "https://" + ip + "/reboot.cgi?loginuse=admin\&loginpas=PASSWORD"
+            document.head.appendChild(scriptTag);
+        }
+    </script>
+    <style>
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+        }
+        article button {
+            padding: 0.15rem 0.4rem;
+        }
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(7, auto);
+        }
+        article header {
+            text-align: center;
+        }
+    </style>
+  </head>
+
+<body>
+  <main class="container">
+    <header>
+    </header>
+    <div class="grid">
+        <article>
+        <header><h2>cam241</h2></header>
+        <figure>
+            <img src="https://cam241.domain.tld/videostream.cgi?user=admin&amp;pwd=PASSWORD" alt="cam241" loading="lazy">
+        </figure>
+        <div class="controls">
+            <button onclick='parm2cam("cam241.domain.tld","15","1")'>320x</button>
+            <button onclick='parm2cam("cam241.domain.tld","15","0")'>640x</button>
+            <button onclick='move2cam("cam241.domain.tld","0")'>⬆</button>
+            <button onclick='move2cam("cam241.domain.tld","2")'>⬇</button>
+            <button onclick='move2cam("cam241.domain.tld","4")'>⬅</button>
+            <button onclick='move2cam("cam241.domain.tld","6")'>➡</button>
+            <button onclick='reboot2cam("cam241.domain.tld")'>Reboot</button>
+        </div>
+        </article>
+
+        <article>
+        <header><h2>cam242</h2></header>
+        <figure>
+            <img src="https://cam242.domain.tld/videostream.cgi?user=admin&amp;pwd=PASSWORD" alt="cam242"  loading="lazy">
+        </figure>
+        <div class="controls">
+            <button onclick='parm2cam("cam242.domain.tld","15","1")'>320x</button>
+            <button onclick='parm2cam("cam242.domain.tld","15","0")'>640x</button>
+            <button onclick='move2cam("cam242.domain.tld","0")'>⬆</button>
+            <button onclick='move2cam("cam242.domain.tld","2")'>⬇</button>
+            <button onclick='move2cam("cam242.domain.tld","4")'>⬅</button>
+            <button onclick='move2cam("cam242.domain.tld","6")'>➡</button>
+            <button onclick='reboot2cam("cam242.domain.tld")'>Reboot</button>
+        </div>
+        </article>
+
+        <article>
+        <header><h2>cam243</h2></header>
+        <figure>
+            <img src="https://cam243.domain.tld/videostream.cgi?user=admin&amp;pwd=PASSWORD" alt="cam243"  loading="lazy">
+        </figure>
+        <div class="controls">
+            <button onclick='parm2cam("cam243.domain.tld","15","1")'>320x</button>
+            <button onclick='parm2cam("cam243.domain.tld","15","0")'>640x</button>
+            <button onclick='move2cam("cam243.domain.tld","0")'>⬆</button>
+            <button onclick='move2cam("cam243.domain.tld","2")'>⬇</button>
+            <button onclick='move2cam("cam243.domain.tld","4")'>⬅</button>
+            <button onclick='move2cam("cam243.domain.tld","6")'>➡</button>
+            <button onclick='reboot2cam("cam243.domain.tld")'>Reboot</button>
+        </div>
+        </article>
+
+        <article>
+        <header><h2>cam244</h2></header>
+        <figure>
+            <img src="https://cam244.domain.tld/videostream.cgi?user=admin&amp;pwd=PASSWORD" alt="cam244"  loading="lazy">
+        </figure>
+        <div class="controls">
+            <button onclick='parm2cam("cam244.domain.tld","15","1")'>320x</button>
+            <button onclick='parm2cam("cam244.domain.tld","15","0")'>640x</button>
+            <button onclick='move2cam("cam244.domain.tld","0")'>⬆</button>
+            <button onclick='move2cam("cam244.domain.tld","2")'>⬇</button>
+            <button onclick='move2cam("cam244.domain.tld","4")'>⬅</button>
+            <button onclick='move2cam("cam244.domain.tld","6")'>➡</button>
+            <button onclick='reboot2cam("cam244.domain.tld")'>Reboot</button>
+        </div>
+        </article>
+    </div>
+  </main>
+
+  <footer class="container">
+  </footer>
+
+</body>
+</html>
+<!--
+TODO: domain.tld
+TODO: PASSWORD
+-->
