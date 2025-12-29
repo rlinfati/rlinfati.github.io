@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>RHEL config</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  </head>
+
+<body>
+  <main class="container">
+    <header>
+    <nav>
+      <ul>
+        <li><a href="#keys">SSH / GPG</a></li>
+        <li><a href="#rhel">RHEL</a></li>
+        <li><a href="#slmgr">slmgr</a></li>
+        <li><a href="#rpi">Raspberry Pi</a></li>
+      </ul>
+    </nav>
+
+    </header>
+
+    <!-- SSH / GPG -->
+    <section id="keys">
+      <h2>SSH & GPG · Keys</h2>
+      <pre><code>
+curl https://launchpad.net/~rlinfati/+sshkeys >> $HOME/.ssh/authorized_keys
+curl https://github.com/rlinfati.keys         >> $HOME/.ssh/authorized_keys
+curl https://github.com/rlinfati.gpg           | gpg --import
+curl https://api.github.com/users/rlinfati/keys
+      </code></pre>
+    </section>
+
+    <!-- RHEL / CentOS -->
+    <section id="rhel">
+      <h2>RHEL ·  Rocky Linux · AlmaLinux · CentOS Stream</h2>
+      <pre><code>
+sudo subscription-manager unregister
+sudo subscription-manager register --org=4603817 --activationkey=454ff824-5279-4f5b-b754-9dfab95678d9
+sudo virt-install --name centos10s --cpu Haswell --boot uefi --install centos-stream10 --extra-args "ip=dhcp inst.ks=https://rlinfati.github.io/rhel/ks0.cfg" --noreboot
+sudo virt-install --name rhel10    --cpu Haswell --boot uefi --osinfo  rhel10-unknown  --location /var/lib/libvirt/images/rhel-10.1-x86_64-boot.iso --extra-args "ip=dhcp inst.ks=https://rlinfati.github.io/rhel/ks0.cfg" --noreboot
+NOTE: x86-64-v4: Skylake-Server
+NOTE: x86-64-v3: Haswell
+NOTE: x86-64-v2: Nehalem
+      </code></pre>
+
+      <pre><code>
+sudo dnf clean all
+sudo dnf upgrade
+sudo dnf --exclude=kernel* --exclude=python3-perf --exclude=perf                                   upgrade
+sudo dnf --exclude=kernel* --exclude=python3-perf --exclude=perf --exclude=nvidia* --exclude=cuda* upgrade
+sudo dnf --showduplicates list kernel
+sudo dnf search kmod-nvidia-
+sudo dnf distro-sync
+sudo dnf needs-restarting
+sudo restorecon -RvxF /
+      </code></pre>
+    </section>
+
+    <!-- slmgr -->
+    <section id="slmgr">
+      <h2>slmgr · OSPP · EAP-MSCHAPv2</h2>
+      <pre><code>
+cscript %SystemRoot%\System32\slmgr.vbs /ckms
+cscript %SystemRoot%\System32\slmgr.vbs /ckms-domain
+cscript %SystemRoot%\System32\slmgr.vbs /skms vl0.menoscero.com
+cscript %SystemRoot%\System32\slmgr.vbs /skms vlmcsd.vlmcsd.svc.cluster.local
+
+cscript %SystemRoot%\System32\slmgr.vbs /ato
+cscript "%ProgramFiles%\Microsoft Office\Office16\OSPP.VBS" /act
+
+cscript %SystemRoot%\System32\slmgr.vbs /dlv all
+cscript "%ProgramFiles%\Microsoft Office\Office16\OSPP.VBS" /dstatus
+
+Remove-VpnConnection -Name m0-mia -Force -PassThru
+Add-VpnConnection -Name m0-mia -ServerAddress mia.menoscero.com -TunnelType IKEv2 -RememberCredential -SplitTunneling -PassThru
+Add-VpnConnectionRoute -ConnectionName m0-mia -DestinationPrefix 172.16.195.96/32 -PassThru
+      </code></pre>
+    </section>
+
+    <!-- Raspberry Pi -->
+    <section id="rpi">
+      <h2>Raspberry Pi 5 · RHEL</h2>
+      <pre><code>
+sudo dnf groupinstall virtualization-host-environment
+sudo dnf groupinstall Virtualization\ Hypervisor
+sudo dnf install virt-install
+sudo virt-install --name RaspberryPI5 --memory 12288 --disk size=3,format=raw --osinfo rhel9-unknown --location /var/lib/libvirt/images/rhel-9.7-aarch64-boot.iso --extra-args "console=ttyS0 ip=dhcp inst.ks=https://mia.menoscero.com/rhel/ks-rpi5.cfg" --nographics --noreboot
+sudo virsh destroy RaspberryPI5
+sudo virsh undefine RaspberryPI5 --nvram
+sudo mv /var/lib/libvirt/images/RaspberryPI5.img /home/rlinfati/RaspberryPI5.img
+sudo chown rlinfati:rlinfati /home/rlinfati/RaspberryPI5.img
+gzip /home/rlinfati/RaspberryPI5.img
+      </code></pre>
+
+      <pre><code>
+ma1=$(grep -oP 'smsc95xx\.macaddr=\K[0-9A-F:]+' /proc/cmdline)
+ma2=$(echo $ma1 | awk -F: '{print $4 $5 $6}' | tr '[:upper:]' '[:lower:]')
+echo sudo hostnamectl set-hostname rpi5-$ma2.home.arpa
+sudo parted --align opt /dev/mmcblk0 resizepart 3 100%
+sudo resize2fs -p /dev/mmcblk0p3
+      </code></pre>
+
+      <pre><code>
+sudo nmcli connection add type wifi con-name Tenda-2621B0    ssid Tenda-2621B0    wifi-sec.key-mgmt wpa-psk wifi-sec.psk "menosceroCCP" wifi.hidden yes
+sudo nmcli connection add type wifi con-name Tenda-2621B0-ac ssid Tenda-2621B0-ac wifi-sec.key-mgmt wpa-psk wifi-sec.psk "menosceroCCP"
+sudo nmcli connection add type wifi con-name m0-ccp          ssid m0-ccp          wifi-sec.key-mgmt wpa-psk wifi-sec.psk "menosceroCCP" wifi.hidden yes
+sudo nmcli connection add type wifi con-name m0-ccp-ac       ssid m0-ccp-ac       wifi-sec.key-mgmt wpa-psk wifi-sec.psk "menosceroCCP"
+      </code></pre>
+    </section>
+
+  </main>
+
+  <footer class="container">
+  </footer>
+
+</body>
+</html>
