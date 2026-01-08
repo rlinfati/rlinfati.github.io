@@ -47,8 +47,8 @@ NOTE: x86-64-v2: Nehalem
       <pre><code>
 sudo dnf clean all
 sudo dnf upgrade
-sudo dnf --exclude=kernel* --exclude=python3-perf --exclude=perf                                   upgrade
-sudo dnf --exclude=kernel* --exclude=python3-perf --exclude=perf --exclude=nvidia* --exclude=cuda* upgrade
+sudo dnf --exclude=kernel* --exclude=python3-perf --exclude=perf                                                        upgrade
+sudo dnf --exclude=kernel* --exclude=python3-perf --exclude=perf --exclude=nvidia* --exclude=libnvidia* --exclude=cuda* upgrade
 sudo dnf --showduplicates list kernel
 sudo dnf search kmod-nvidia-
 sudo dnf distro-sync
