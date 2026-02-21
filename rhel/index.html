@@ -63,7 +63,6 @@ sudo restorecon -RvxF /
       <pre><code>
 cscript %SystemRoot%\System32\slmgr.vbs /ckms
 cscript %SystemRoot%\System32\slmgr.vbs /ckms-domain
-cscript %SystemRoot%\System32\slmgr.vbs /skms vl0.menoscero.com
 cscript %SystemRoot%\System32\slmgr.vbs /skms vlmcsd.vlmcsd.svc.cluster.local
 
 cscript %SystemRoot%\System32\slmgr.vbs /ato
@@ -71,10 +70,6 @@ cscript "%ProgramFiles%\Microsoft Office\Office16\OSPP.VBS" /act
 
 cscript %SystemRoot%\System32\slmgr.vbs /dlv all
 cscript "%ProgramFiles%\Microsoft Office\Office16\OSPP.VBS" /dstatus
-
-Remove-VpnConnection -Name m0-mia -Force -PassThru
-Add-VpnConnection -Name m0-mia -ServerAddress mia.menoscero.com -TunnelType IKEv2 -RememberCredential -SplitTunneling -PassThru
-Add-VpnConnectionRoute -ConnectionName m0-mia -DestinationPrefix 172.16.195.96/32 -PassThru
       </code></pre>
     </section>
 
