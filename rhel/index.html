@@ -47,10 +47,12 @@ NOTE: x86-64-v2: Nehalem
       <pre><code>
 sudo dnf clean all
 sudo dnf upgrade
-sudo dnf --exclude=kernel* --exclude=python3-perf --exclude=perf                                                        upgrade
+sudo dnf --exclude=kernel* --exclude=python3-perf --exclude=perf upgrade
 sudo dnf --exclude=kernel* --exclude=python3-perf --exclude=perf --exclude=nvidia* --exclude=libnvidia* --exclude=cuda* upgrade
+sudo dnf --showduplicates list nvidia-driver-cuda-libs
+sudo dnf search kmod-nvidia-open-580
 sudo dnf --showduplicates list kernel
-sudo dnf search kmod-nvidia-
+sudo dnf --disablerepo cuda-rhel10-x86_64 --showduplicates list nvidia-driver-cuda-libs
 sudo dnf distro-sync
 sudo dnf needs-restarting
 sudo restorecon -RvxF /
@@ -70,6 +72,15 @@ cscript "%ProgramFiles%\Microsoft Office\Office16\OSPP.VBS" /act
 
 cscript %SystemRoot%\System32\slmgr.vbs /dlv all
 cscript "%ProgramFiles%\Microsoft Office\Office16\OSPP.VBS" /dstatus
+
+$ipsecsrv = "xxyyy.zzz.menoscero.com"
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Rasman\Parameters" /v NegotiateDH2048_AES256 /t REG_DWORD /d 1 /f
+Add-VpnConnection -Name server.home.arpa -ServerAddress $ipsecsrv -TunnelType IKEv2 -RememberCredential -SplitTunneling
+Add-VpnConnectionRoute -ConnectionName server.home.arpa -DestinationPrefix 10.96.0.0/12
+Add-VpnConnectionRoute -ConnectionName server.home.arpa -DestinationPrefix 10.244.0.0/16
+Set-VpnConnection -Name server.home.arpa -DnsSuffix svc.cluster.local
+Resolve-DnsName kubernetes.default.svc.cluster.local
+Resolve-DnsName vlmcsd.vlmcsd.svc.cluster.local
       </code></pre>
     </section>
 
