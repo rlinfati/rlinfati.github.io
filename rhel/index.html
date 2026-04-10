@@ -88,30 +88,57 @@ Resolve-DnsName vlmcsd.vlmcsd.svc.cluster.local
     <section id="rpi">
       <h2>Raspberry Pi 5 · RHEL</h2>
       <pre><code>
-sudo dnf groupinstall virtualization-host-environment
-sudo dnf groupinstall Virtualization\ Hypervisor
-sudo dnf install virt-install
-sudo virt-install --name RaspberryPI5 --memory 12288 --disk size=3,format=raw --osinfo rhel9-unknown --location /var/lib/libvirt/images/rhel-9.7-aarch64-boot.iso --extra-args "console=ttyS0 ip=dhcp inst.ks=https://mia.menoscero.com/rhel/ks-rpi5.cfg" --nographics --noreboot
-sudo virsh destroy RaspberryPI5
-sudo virsh undefine RaspberryPI5 --nvram
-sudo mv /var/lib/libvirt/images/RaspberryPI5.img /home/rlinfati/RaspberryPI5.img
-sudo chown rlinfati:rlinfati /home/rlinfati/RaspberryPI5.img
-gzip /home/rlinfati/RaspberryPI5.img
-      </code></pre>
+sudo raspi-config nonint do_change_locale en_US.UTF-8
+sudo raspi-config nonint do_change_timezone America/Santiago
+sudo raspi-config nonint do_configure_keyboard
+sudo raspi-config nonint do_ssh 0
 
-      <pre><code>
 ma1=$(grep -oP 'smsc95xx\.macaddr=\K[0-9A-F:]+' /proc/cmdline)
 ma2=$(echo $ma1 | awk -F: '{print $4 $5 $6}' | tr '[:upper:]' '[:lower:]')
-echo sudo hostnamectl set-hostname rpi5-$ma2.home.arpa
-sudo parted --align opt /dev/mmcblk0 resizepart 3 100%
-sudo resize2fs -p /dev/mmcblk0p3
+sudo raspi-config nonint do_hostname rpi5-$ma2.home.arpa
       </code></pre>
 
       <pre><code>
-sudo nmcli connection add type wifi con-name Tenda-2621B0    ssid Tenda-2621B0    wifi-sec.key-mgmt wpa-psk wifi-sec.psk "menosceroCCP" wifi.hidden yes
-sudo nmcli connection add type wifi con-name Tenda-2621B0-ac ssid Tenda-2621B0-ac wifi-sec.key-mgmt wpa-psk wifi-sec.psk "menosceroCCP"
-sudo nmcli connection add type wifi con-name m0-ccp          ssid m0-ccp          wifi-sec.key-mgmt wpa-psk wifi-sec.psk "menosceroCCP" wifi.hidden yes
-sudo nmcli connection add type wifi con-name m0-ccp-ac       ssid m0-ccp-ac       wifi-sec.key-mgmt wpa-psk wifi-sec.psk "menosceroCCP"
+sudo nmcli radio wifi on
+sudo raspi-config nonint do_wifi_country CL
+sudo raspi-config nonint do_wifi_ssid_passphrase m0-ccp-ac menosceroCCP
+sudo nmcli connection add type wifi con-name m0-ccp-ac ssid m0-ccp-ac wifi-sec.key-mgmt wpa-psk wifi-sec.psk "menosceroCCP"
+sudo nmcli connection add type wifi con-name wifi-ubb  ssid wifi-ubb  wifi-sec.key-mgmt wpa-psk wifi-sec.psk "soporte-dci"
+      </code></pre>
+
+      <pre><code>
+KVER="6.12.47+rpt"
+sudo apt update
+sudo apt remove linux-image-rpi-v8 linux-image-${KVER}-rpi-v8 linux-headers-rpi-v8 linux-headers-${KVER}-rpi-v8 --purge
+sudo apt remove linux-kbuild-${KVER} linux-headers-rpi-2712 linux-headers-${KVER}-rpi-2712 linux-headers-${KVER}-common-rpi --purge
+sudo apt upgrade linux-image-rpi-2712
+sudo apt remove linux-image-${KVER}-rpi-2712 --purge
+
+sudo apt update
+sudo apt upgrade
+sudo apt full-upgrade
+sudo apt autoremove --purge
+
+sudo rpi-eeprom-update -a
+      </code></pre>
+
+      <pre><code>
+sudo nmcli connection delete eduroam
+
+sudo nmcli connection add type wifi con-name eduroam ssid eduroam wifi-sec.key-mgmt wpa-eap \
+  802-1x.eap ttls \
+  802-1x.identity "username@ubiobio.cl" \
+  802-1x.anonymous-identity "anonymous@ubiobio.cl" \
+  802-1x.phase2-auth pap \
+  802-1x.phase1-auth-flags tls-1-0-enable
+
+sudo nmcli connection add type wifi con-name eduroam ssid eduroam wifi-sec.key-mgmt wpa-eap \
+  802-1x.eap peap \
+  802-1x.identity "username@ubiobio.cl" \
+  802-1x.phase2-auth mschapv2 \
+  802-1x.phase1-auth-flags tls-1-0-enable
+
+sudo nmcli connection up eduroam --ask
       </code></pre>
     </section>
 
