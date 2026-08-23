@@ -47,15 +47,52 @@ NOTE: x86-64-v2: Nehalem
       <pre><code>
 sudo dnf clean all
 sudo dnf upgrade
-sudo dnf --exclude=kernel* --exclude=python3-perf --exclude=perf upgrade
-sudo dnf --exclude=kernel* --exclude=python3-perf --exclude=perf --exclude=nvidia* --exclude=libnvidia* --exclude=cuda* upgrade
+sudo dnf --showduplicates list kernel
 sudo dnf --showduplicates list nvidia-driver-cuda-libs
 sudo dnf search kmod-nvidia-open-580
-sudo dnf search kmod-nvidia-open-610
-sudo dnf --showduplicates list kernel
+sudo dnf search kmod-nvidia-open-*6.12.0-211.7.1*
+sudo dnf --disableplugin versionlock upgrade
 sudo dnf distro-sync
 sudo dnf needs-restarting
 sudo restorecon -RvxF /
+      </code></pre>
+
+      <pre><code>
+sudo dnf install python3-dnf-plugin-versionlock
+
+sudo tee /etc/dnf/plugins/versionlock.list >/dev/null <<'EOF'
+# m0net rhel 10.2
+kernel-6.12.0-211.7.1.el10_2
+kernel-core-6.12.0-211.7.1.el10_2
+kernel-modules-6.12.0-211.7.1.el10_2
+kernel-modules-core-6.12.0-211.7.1.el10_2
+kernel-modules-extra-6.12.0-211.7.1.el10_2
+kernel-headers-6.12.0-211.7.1.el10_2
+kernel-tools-6.12.0-211.7.1.el10_2
+kernel-tools-libs-6.12.0-211.7.1.el10_2
+python3-perf-6.12.0-211.7.1.el10_2
+
+# m0net uek 6.12.0-200
+kernel-uek-6.12.0-200.74.27.el10uek
+kernel-uek-core-6.12.0-200.74.27.el10uek
+kernel-uek-modules-6.12.0-200.74.27.el10uek
+kernel-uek-modules-core-6.12.0-200.74.27.el10uek
+kernel-uek-modules-extra-netfilter-6.12.0-200.74.27.el10uek
+
+# monet nvidia 580
+nvidia-driver-cuda-3:580.*
+nvidia-driver-cuda-libs-3:580.*
+nvidia-driver-common-3:580.*
+nvidia-modprobe-3:580.*
+nvidia-kmod-common-3:580.*
+nvidia-persistenced-3:580.*
+libnvidia-cfg-3:580.*
+libnvidia-gpucomp-3:580.*
+libnvidia-ml-3:580.*
+kmod-nvidia-open-580.*.6.12.0-211.7.1-3:580.*
+
+# eof
+EOF
       </code></pre>
     </section>
 
@@ -115,7 +152,7 @@ runcmd:
     sed -ri 's/^[[:space:]]*AcceptEnv[[:space:]]+/# &/' /etc/ssh/sshd_config
     raspi-config nonint do_ssh 0
     #
-    mac_suffix="$(tr -d ':' </sys/class/net/eth0/address | tail -c 7)"
+    mac_suffix="$(cat /sys/class/net/eth0/address | tr -d ':' | tail -c 7)"
     raspi-config nonint do_hostname "rpi5-${mac_suffix}"
     #
     nmcli radio wifi on
