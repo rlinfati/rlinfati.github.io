@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Rodrigo Linfati</title>
     <meta name="description" content="Rodrigo Linfati, Full Professor of Industrial Engineering at Universidad del Bío-Bío (Chile). Research in operations research, combinatorial optimization, metaheuristics, and operations management.">
+    <meta name="color-scheme" content="light dark">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    <link rel="stylesheet" href="style.css">
   </head>
 
   <body>
     <header class="container">
       <nav>
         <ul>
-          <li><strong>Rodrigo Linfati</strong></li>
+          <li><a href="index.html" class="contrast"><strong>Rodrigo Linfati</strong></a></li>
         </ul>
         <ul>
           <li><a href="index.html" aria-current="page">Home</a></li>
@@ -23,9 +25,12 @@
       </nav>
     </header>
 
-    <main class="container">
-        <h2>/me</h2>
+    <main id="main" class="container">
+        <h2>About Me</h2>
 
+        <div class="profile">
+          <img src="profile.jpg" alt="Rodrigo Linfati" width="200" height="200">
+          <div class="profile-text">
         <p>
         Rodrigo Linfati is currently a Full Professor (since 2026) in the Department
         of Industrial Engineering at the University of Bío-Bío in Concepción (Chile),
@@ -35,6 +40,8 @@
         Engineering, and a Bachelor of Science in Engineering from the University of
         Concepción (Chile).
         </p>
+          </div>
+        </div>
 
         <ul>
         <li>
@@ -58,16 +65,17 @@
         </li>
         </ul>
 
-        <p>
-        <strong>Publications:</strong>
-        <a href="https://scholar.google.cl/citations?user=6bJ02OAAAAAJ">Google Scholar</a>
-        ·
-        <a href="https://www.webofscience.com/wos/author/rid/X-9326-2018">Web of Science</a>
-        ·
-        <a href="https://www.scopus.com/authid/detail.uri?authorId=55250033800">Scopus</a>
-        ·
-        <a href="https://orcid.org/0000-0002-7659-383X">ORCID</a>
+        <p class="links">
+        <a id="email" role="button" href="#">rlinfati [at] ubiobio.cl</a>
+        <a role="button" class="outline" href="https://www.linkedin.com/in/rlinfati/">LinkedIn</a>
+        <a role="button" class="outline" href="https://orcid.org/0000-0002-7659-383X">ORCID</a>
+        <a role="button" class="outline" href="https://github.com/rlinfati/">GitHub</a>
         </p>
+        <script>
+          var a = document.getElementById("email"), u = "rlinfati", d = "ubiobio.cl";
+          a.href = "mailto:" + u + "@" + d;
+          a.textContent = u + "@" + d;
+        </script>
 
     </main>
 
