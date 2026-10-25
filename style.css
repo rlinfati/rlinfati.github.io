@@ -1,0 +1,12 @@
+/* nav: keep the name on one line and let the links wrap on narrow screens */
+header nav { flex-wrap: wrap; }
+header nav ul:first-child li { white-space: nowrap; }
+
+/* home: photo next to the intro */
+.profile { display: flex; gap: 1.5rem; align-items: center; justify-content: center; flex-wrap: wrap; margin-bottom: 1.5rem; }
+.profile img { border-radius: 50%; object-fit: cover; flex: none; }
+.profile-text { flex: 1 1 20rem; }
+
+/* button rows */
+.links { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.links a { margin: 0; }

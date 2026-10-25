@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "redirects": [
+      {
+        "source": "/**",
+        "destination": "https://rlinfati.github.io/",
+        "type": 302
+      }
+    ]
+  }
+}
